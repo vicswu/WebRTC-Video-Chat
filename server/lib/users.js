@@ -1,14 +1,15 @@
 /* eslint-disable no-await-in-loop */
 const userId = require('./userId');
+const { v4: uuidv4 } = require('uuid');
 
 const users = {};
 
 // Random ID until the ID is not in use
 async function randomID() {
-    let id = userId();
+    let id = uuidv4();
     while (id in users) {
         await Promise.delay(5);
-        id = userId();
+        id = uuidv4();
     }
     return id;
 }
